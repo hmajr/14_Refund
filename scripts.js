@@ -3,6 +3,10 @@ const amount = document.getElementById("amount")
 const expense = document.getElementById("expense")
 const category = document.getElementById("category")
 
+const expenseList = document.querySelector("ul")
+const expensesQuantity = document.querySelector("aside header p span")
+const expensesTotal = document.querySelector("aside header h2")
+
 amount.oninput = () => {
   let value = amount.value.replace(/\D/g, '')
 
@@ -74,9 +78,11 @@ function expenseAdd(newExpense){
 
     expenseList.appendChild(expenseItem)
     updateTotals()
+    formClear()
   } catch (error) {
   }
 }
+
 
 function updateTotals(){
   try {
@@ -114,4 +120,23 @@ function updateTotals(){
   } catch (error) {
     console.log(error)
   }
+}
+
+//Remove list item
+expenseList.addEventListener("click", function (event) {
+  if(event.target.classList.contains("remove-icon")){
+    const item = event.target.closest(".expense")
+
+    item.remove()
+  }
+
+  updateTotals()
+})
+
+function formClear() {
+  expense.value = ""
+  amount.value = ""
+  category.value = ""
+
+  expense.focus()
 }

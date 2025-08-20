@@ -23,7 +23,7 @@ function formatCurrencyBRL (value){
 form.onsubmit = (event) => {
   event.preventDefault()
 
-  const newExepnse = {
+  const newExpense = {
     id : new Date().getTime(),
     expense : expense.value,
     category_id : category.value,
